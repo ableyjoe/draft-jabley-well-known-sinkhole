@@ -99,7 +99,8 @@
 	for remote-triggered black holes <xref target="RFC3882"/>,
 	<xref target="RFC5635"/>. The addresses of the sinkholes
 	used for these purposes are generally specific to the network
-	operator that deployed them, and are not published.</t>
+	operator that deployed them, and their details not widely
+        published.</t>
 
       <t><xref target="RFC6666"/> describes IPv6 addresses assigned
 	for the purpose of discarding traffic. Those addresses are
@@ -110,13 +111,13 @@
     </section>
 
     <section title="Example Use Cases">
-      <section title="Sinkholing Unassigned Address">
-        <t>XX example of using a sinkhole next-hop for an aggregate XX</t>
-      </section>
-
       <section title="Sinkholing Unwanted DNS Traffic">
         <t>XX example of using a sinkhole-numbered nameserver in a
           DNS delegation XX</t>
+      </section>
+
+      <section title="More Compelling Use Cases">
+        <t>XX insert more compelling use cases XX</t>
       </section>
     </section>
 
