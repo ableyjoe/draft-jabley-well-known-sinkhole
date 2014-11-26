@@ -73,8 +73,8 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Existing Facilities . . . . . . . . . . . . . . . . . . . . .   3
    3.  Example Use Cases . . . . . . . . . . . . . . . . . . . . . .   3
-     3.1.  Sinkholing Unassigned Address . . . . . . . . . . . . . .   3
-     3.2.  Sinkholing Unwanted DNS Traffic . . . . . . . . . . . . .   3
+     3.1.  Sinkholing Unwanted DNS Traffic . . . . . . . . . . . . .   3
+     3.2.  More Compelling Use Cases . . . . . . . . . . . . . . . .   3
    4.  Guidance for Network Operators  . . . . . . . . . . . . . . .   3
      4.1.  Provisioning  . . . . . . . . . . . . . . . . . . . . . .   3
      4.2.  Inter-Domain Routing  . . . . . . . . . . . . . . . . . .   3
@@ -128,7 +128,8 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
    Network-scope sinkholes are in widespread use as destinations for
    remote-triggered black holes [RFC3882], [RFC5635].  The addresses of
    the sinkholes used for these purposes are generally specific to the
-   network operator that deployed them, and are not published.
+   network operator that deployed them, and their details not widely
+   published.
 
    [RFC6666] describes IPv6 addresses assigned for the purpose of
    discarding traffic.  Those addresses are not intended to be used
@@ -138,14 +139,14 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
 
 3.  Example Use Cases
 
-3.1.  Sinkholing Unassigned Address
-
-   XX example of using a sinkhole next-hop for an aggregate XX
-
-3.2.  Sinkholing Unwanted DNS Traffic
+3.1.  Sinkholing Unwanted DNS Traffic
 
    XX example of using a sinkhole-numbered nameserver in a DNS
    delegation XX
+
+3.2.  More Compelling Use Cases
+
+   XX insert more compelling use cases XX
 
 4.  Guidance for Network Operators
 
@@ -157,7 +158,6 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
 
    XX implications of announcing or accepting routes covering sinkhole
    addresses.
-
 
 
 
