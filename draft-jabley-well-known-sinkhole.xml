@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+  <!ENTITY rfc2827 PUBLIC ""
+    "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2827.xml">
+  <!ENTITY rfc2860 PUBLIC ""
+    "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2860.xml">
+  <!ENTITY rfc3172 PUBLIC ""
+    "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3172.xml">
+  <!ENTITY rfc3882 PUBLIC ""
+    "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3882.xml">
+  <!ENTITY rfc5635 PUBLIC ""
+    "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5635.xml">
+  <!ENTITY rfc6666 PUBLIC ""
+    "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6666.xml">
+  <!ENTITY rfc6890 PUBLIC ""
+    "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6890.xml">
+]>
+
+<rfc category="bcp" docName="draft-jabley-well-known-sinkhole-00"
+     ipr="trust200902">
+
+  <?rfc toc="yes" ?>
+  <?rfc symrefs="yes" ?>
+  <?rfc sortrefs="yes"?>
+  <?rfc iprnotified="no" ?>
+  <?rfc strict="yes" ?>
+
+  <front>
+    <title>A Well-Known Sinkhole for the Internet</title>
+
+    <author fullname="Joe Abley" initials="J." surname="Abley">
+      <organization>Dyn, Inc.</organization>
+      <address>
+        <postal>
+          <street>186 Albert Street, Suite 103</street>
+          <city>London</city>
+          <region>ON</region>
+          <code>N6A 1M1</code>
+          <country>Canada</country>
+        </postal>
+        <phone>+1 519 670 9327</phone>
+        <email>jabley@dyn.com</email>
+      </address>
+    </author>
+
+    <date day="26" month="November" year="2014" />
+
+    <abstract>
+      <t>A common method for dealing with unwanted traffic is to
+	direct that traffic at nominated addresses within a network
+	that are null-routed; that is, packets with such destination
+	addresses are discarded silently by routers with a null
+	route for that destination configured. These addresses are
+	colloquially known as sinkholes, by analogy with the same
+	term used in Physical Geography to describe a hole in the
+	ground formed by some form of collapse of the surface
+	layer, into which objects may fall and be lost forever.</t>
+
+      <t>This document describes an Internet-scope anycast sinkhole
+	service with associated well-known, permanent IPv4 and IPv6
+	address assignments, and provides guidance both for network
+	operators and for those wishing to use the service to discard
+	unwanted traffic efficiently.</t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section title="Introduction">
+      <t>A common method for dealing with unwanted traffic is to
+        direct that traffic at nominated addresses within a network
+        that are null-routed; that is, packets with such destination
+        addresses are discarded silently by routers with a null
+        route for that destination configured. These addresses are
+        colloquially known as sinkholes, by analogy with the same
+        term used in Physical Geography to describe a hole in the
+        ground formed by some form of collapse of the surface
+        layer, into which objects may fall and be lost forever.</t>
+
+      <t>It is common practice for network operators to configure 
+        such sinkholes on many or all of their routers in order to
+        avoid the cost of transporting packets across a backbone
+        only for them to be discarded. This configuration is, in
+        effect, a network-scope, anycast sinkhole service. The
+        addresses used for such sinkhole services are typically
+        assigned from address pools administered by the network
+        operator, and are for internal use.</t>
+
+      <t>This document describes an Internet-scope anycast sinkhole
+        service with associated well-known, permanent IPv4 and IPv6
+        address assignments, and provides guidance both for network
+        operators and for those wishing to use the service to discard
+        unwanted traffic efficiently.</t>
+    </section>
+
+    <section title="Existing Facilities">
+      <t>Network-scope sinkholes are in widespread use as destinations
+	for remote-triggered black holes <xref target="RFC3882"/>,
+	<xref target="RFC5635"/>. The addresses of the sinkholes
+	used for these purposes are generally specific to the network
+	operator that deployed them, and are not published.</t>
+
+      <t><xref target="RFC6666"/> describes IPv6 addresses assigned
+	for the purpose of discarding traffic. Those addresses are
+	not intended to be used across autonomous-system borders,
+	however; they are not observed to be generally "reachable"
+	and are frequently the subject of martian filtering <xref
+	target="RFC2827"/>.</t>
+    </section>
+
+    <section title="Example Use Cases">
+      <section title="Sinkholing Unassigned Address">
+        <t>XX example of using a sinkhole next-hop for an aggregate XX</t>
+      </section>
+
+      <section title="Sinkholing Unwanted DNS Traffic">
+        <t>XX example of using a sinkhole-numbered nameserver in a
+          DNS delegation XX</t>
+      </section>
+    </section>
+
+    <section title="Guidance for Network Operators">
+      <section title="Provisioning">
+        <t>XX examples of how to configure this XX</t>
+      </section>
+
+      <section title="Inter-Domain Routing">
+        <t>XX implications of announcing or accepting routes covering
+          sinkhole addresses.</t>
+      </section>
+    </section>
+
+    <section title="Guidance for Sinking Unwanted Traffic">
+      <t>XX provide guidance! XX</t>
+    </section>
+
+    <section title="IAB Considerations">
+      <t>The IAB is requested to approve the delegation of the
+	SINKHOLE.ARPA zone described in <xref target="iana"/> in
+	accordance with <xref target="RFC3172"/>.</t>
+    </section>
+
+    <section anchor="iana" title="IANA Considerations">
+      <section title="Address Assignment" anchor="assignment">
+        <t>This document requests that IANA assign IPv4 and IPv6
+	  number resources in conformance with section 4 of <xref
+          target="RFC2860"></xref>.</t>
+
+        <t>The IANA is requested to assign one IPv4 /24 netblock
+	  and register its use in the IPv4 Special-Purpose Address
+	  Registry <xref target="RFC6890"></xref> as follows:</t>
+
+        <texttable>
+          <ttcol>Name</ttcol>
+          <ttcol>Value</ttcol>
+
+          <c>Address Block</c>
+          <c>As determined by IANA</c>
+
+          <c>Name</c>
+          <c>Internet-Sinkhole-v4</c>
+
+          <c>RFC</c>
+          <c>[THIS DOCUMENT]</c>
+
+          <c>Allocation Date</c>
+          <c>As determined by IANA</c>
+
+          <c>Termination Date</c>
+          <c>N/A</c>
+
+          <c>Source</c>
+          <c>False</c>
+
+          <c>Destination</c>
+          <c>True</c>
+
+          <c>Forwardable</c>
+          <c>True</c>
+
+          <c>Global</c>
+          <c>True</c>
+
+          <c>Reserved-by-Protocol</c>
+          <c>False</c>
+        </texttable>
+
+        <t>The IANA is requested to assign one IPv6 /48 netblock
+          and register its use in the IPv6 Special-Purpose Address
+	  Registry <xref target="RFC6890"></xref> as follows:</t>
+  
+        <texttable>
+          <ttcol>Name</ttcol>
+          <ttcol>Value</ttcol>
+
+          <c>Address Block</c>
+          <c>As determined by IANA</c>
+
+          <c>Name</c>
+          <c>Internet-Sinkhole-v6</c>
+
+          <c>RFC</c>
+          <c>[THIS DOCUMENT]</c>
+
+          <c>Allocation Date</c>
+          <c>As determined by IANA</c>
+
+          <c>Termination Date</c>
+          <c>N/A</c>
+
+          <c>Source</c>
+          <c>False</c>
+
+          <c>Destination</c>
+          <c>True</c>
+
+          <c>Forwardable</c>
+          <c>True</c>
+
+          <c>Global</c>
+          <c>True</c>
+
+          <c>Reserved-by-Protocol</c>
+          <c>False</c>
+        </texttable>
+      </section>
+
+      <section title="DNS Provisioning">
+	<t>The IANA is further requested to arrange reverse DNS for
+	  all individual addresses assigned in <xref target="assignment"/>.
+	  All addresses should map to the name SINKHOLE.ARPA. The
+	  name SINKHOLE.ARPA should map to the lowest addresses
+	  assigned for each address family.</t>
+
+        <t>The following approach is suggested. The IANA is free to
+          choose other approaches.</t>
+
+        <t>
+          <list style="numbers">
+	    <t>The zone SINKHOLE.ARPA should be provisioned on
+	      suitable nameservers as described in <xref
+	      target="sinkhole_arpa_zone"/>.  A delegation for
+	      SINKHOLE.ARPA to those nameservers from the ARPA zone
+	      should be provisioned.</t>
+
+            <t>The reverse zone or zones for the assigned IPv4 and
+              IPv6 addresses should be provisioned on suitable
+              nameservers as described in <xref target="reverse_zone"/>.
+              Suitable delegations for those zones should be provisioned
+              from their parents.</t>
+
+            <t>All zones should be signed with DNSSEC parameters of the
+              IANA's choosing, and all delegations should be secure.</t>
+          </list>
+        </t>
+
+        <figure anchor="sinkhole_arpa_zone">
+          <artwork><![CDATA[
+  $TTL 604800
+
+  @       IN  SOA   A.IANA-SERVERS.NET. NSTLD.IANA.ORG. (
+                      1        ; serial
+                      1800     ; refresh
+                      900      ; retry
+                      604800   ; expire
+                      604800 ) ; negative cache TTL
+
+              NS    A.IANA-SERVERS.NET.
+              NS    B.IANA-SERVERS.NET.
+              NS    C.IANA-SERVERS.NET.
+              NS    NS.ICANN.ORG.
+
+              A     <lowest v4 address assigned>
+
+              AAAA  <lowest v6 address assigned>
+          ]]></artwork>
+        </figure>
+
+        <figure anchor="reverse_zone">
+          <artwork><![CDATA[
+  @       IN  SOA   A.IANA-SERVERS.NET. NSTLD.IANA.ORG. (
+                      1        ; serial
+                      1800     ; refresh
+                      900      ; retry
+                      604800   ; expire
+                      604800 ) ; negative cache TTL
+
+              NS    A.IANA-SERVERS.NET.
+              NS    B.IANA-SERVERS.NET.
+              NS    C.IANA-SERVERS.NET.
+              NS    NS.ICANN.ORG.
+
+  *           PTR   SINKHOLE.ARPA.
+          ]]></artwork>
+        </figure>
+      </section>
+    </section>
+
+    <section title="Security Considerations">
+      <t>This document presents no known additional security concerns
+        to the Internet.</t>
+    </section>
+
+    <section title="Acknowledgements">
+      <t>The author acknowledges the contributions of Stephane
+        Bortzmeyer and Warren Kumari.</t>
+    </section>
+  </middle>
+
+  <back>
+    <references title="Normative References">
+      &rfc3882;
+      &rfc5635;
+      &rfc6666;
+    </references>
+
+    <references title="Informative References">
+      &rfc2827;
+      &rfc2860;
+      &rfc3172;
+      &rfc6890;
+    </references>
+  </back>
+</rfc>
+
