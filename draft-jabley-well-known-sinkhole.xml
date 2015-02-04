@@ -169,7 +169,7 @@
 
     <section title="IAB Considerations">
       <t>The IAB is requested to approve the delegation of the
-	SINKHOLE.ARPA zone described in <xref target="iana"/> in
+	BLACKHOLE.ARPA zone described in <xref target="iana"/> in
 	accordance with <xref target="RFC3172"/>.</t>
     </section>
 
@@ -261,8 +261,8 @@
       <section title="DNS Provisioning">
 	<t>The IANA is further requested to arrange reverse DNS for
 	  all individual addresses assigned in <xref target="assignment"/>.
-	  All addresses should map to the name SINKHOLE.ARPA. The
-	  name SINKHOLE.ARPA should map to the lowest addresses
+	  All addresses should map to the name BLACKHOLE.ARPA. The
+	  name BLACKHOLE.ARPA should map to the lowest addresses
 	  assigned for each address family.</t>
 
         <t>The following approach is suggested. The IANA is free to
@@ -270,10 +270,10 @@
 
         <t>
           <list style="numbers">
-	    <t>The zone SINKHOLE.ARPA should be provisioned on
+	    <t>The zone BLACKHOLE.ARPA should be provisioned on
 	      suitable nameservers as described in <xref
 	      target="sinkhole_arpa_zone"/>.  A delegation for
-	      SINKHOLE.ARPA to those nameservers from the ARPA zone
+	      BLACKHOLE.ARPA to those nameservers from the ARPA zone
 	      should be provisioned.</t>
 
             <t>The reverse zone or zones for the assigned IPv4 and
@@ -323,7 +323,7 @@
               NS    C.IANA-SERVERS.NET.
               NS    NS.ICANN.ORG.
 
-  *           PTR   SINKHOLE.ARPA.
+  *           PTR   BLACKHOLE.ARPA.
           ]]></artwork>
         </figure>
       </section>
@@ -335,7 +335,7 @@
     </section>
 
     <section title="Acknowledgements">
-      <t>The author acknowledges the contributions of Stephane
+      <t>The authors acknowledges the contributions of Stephane
         Bortzmeyer and Warren Kumari.</t>
     </section>
   </middle>
