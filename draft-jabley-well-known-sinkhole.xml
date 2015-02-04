@@ -20,7 +20,7 @@
     "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6890.xml">
 ]>
 
-<rfc category="bcp" docName="draft-jabley-well-known-sinkhole-00"
+<rfc category="bcp" docName="draft-jabley-well-known-blackhole-00"
      ipr="trust200902">
 
   <?rfc toc="yes" ?>
@@ -30,7 +30,7 @@
   <?rfc strict="yes" ?>
 
   <front>
-    <title>A Well-Known Sinkhole for the Internet</title>
+    <title>A Well-Known Black Hole for the Internet</title>
 
     <author fullname="Joe Abley" initials="J." surname="Abley">
       <organization>Dyn, Inc.</organization>
