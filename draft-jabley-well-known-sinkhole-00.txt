@@ -1,11 +1,11 @@
 
 
 
-
 Network Working Group                                           J. Abley
 Internet-Draft                                                 Dyn, Inc.
-Intended status: Best Current Practice                 November 26, 2014
-Expires: May 30, 2015
+Intended status: BCP                                         J. Kristoff
+Expires: August 8, 2015                                       Team Cymru
+                                                        February 4, 2015
 
 
                  A Well-Known Sinkhole for the Internet
@@ -17,18 +17,22 @@ Abstract
    traffic at nominated addresses within a network that are null-routed;
    that is, packets with such destination addresses are discarded
    silently by routers with a null route for that destination
-   configured.  These addresses are colloquially known as sinkholes, by
-   analogy with the same term used in Physical Geography to describe a
-   hole in the ground formed by some form of collapse of the surface
-   layer, into which objects may fall and be lost forever.
+   configured.  These addresses are colloquially known as black holes,
+   by analogy with the same term used in astrophysics to describe a void
+   in spacetime where gravity prohibits anything from escaping once
+   having crossed the event horizon.  Alternatively, traffic may be
+   redirected to quarantine, to isolate, contain and limit any
+   potentially harmful effects.  Quarantine addresses may permit some
+   bidirectional communications whereas a black hole may receive, but
+   never originate traffic.
 
-   This document describes an Internet-scope anycast sinkhole service
-   with associated well-known, permanent IPv4 and IPv6 address
-   assignments, and provides guidance both for network operators and for
-   those wishing to use the service to discard unwanted traffic
-   efficiently.
+   This document describes an Internet-scope anycast black hole and
+   quarantine service with associated well-known, permanent IPv4 and
+   IPv6 address assignments, and provides guidance both for network
+   operators and for those wishing to use the service to discard
+   unwanted traffic efficiently.
 
-Status of This Memo
+Status of this Memo
 
    This Internet-Draft is submitted in full conformance with the
    provisions of BCP 78 and BCP 79.
@@ -43,20 +47,20 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 30, 2015.
+   This Internet-Draft will expire on August 8, 2015.
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 1]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
 
 Copyright Notice
 
-   Copyright (c) 2014 IETF Trust and the persons identified as the
+   Copyright (c) 2015 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
-
-
-
-
-Abley                     Expires May 30, 2015                  [Page 1]
-
-Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
-
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
@@ -68,62 +72,160 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
 
+
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  Existing Facilities . . . . . . . . . . . . . . . . . . . . .   3
-   3.  Example Use Cases . . . . . . . . . . . . . . . . . . . . . .   3
-     3.1.  Sinkholing Unwanted DNS Traffic . . . . . . . . . . . . .   3
-     3.2.  More Compelling Use Cases . . . . . . . . . . . . . . . .   3
-   4.  Guidance for Network Operators  . . . . . . . . . . . . . . .   3
-     4.1.  Provisioning  . . . . . . . . . . . . . . . . . . . . . .   3
-     4.2.  Inter-Domain Routing  . . . . . . . . . . . . . . . . . .   3
-   5.  Guidance for Sinking Unwanted Traffic . . . . . . . . . . . .   4
-   6.  IAB Considerations  . . . . . . . . . . . . . . . . . . . . .   4
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
-     7.1.  Address Assignment  . . . . . . . . . . . . . . . . . . .   4
-     7.2.  DNS Provisioning  . . . . . . . . . . . . . . . . . . . .   5
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
-   9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   6
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .   7
-     10.2.  Informative References . . . . . . . . . . . . . . . . .   7
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   7
+   1.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . .  3
+   2.  Requirements Language  . . . . . . . . . . . . . . . . . . . .  4
+   3.  Existing Facilities  . . . . . . . . . . . . . . . . . . . . .  5
+   4.  Example Use Cases  . . . . . . . . . . . . . . . . . . . . . .  6
+     4.1.  Sinkholing Unwanted DNS Traffic  . . . . . . . . . . . . .  6
+     4.2.  More Compelling Use Cases  . . . . . . . . . . . . . . . .  6
+   5.  Guidance for Network Operators . . . . . . . . . . . . . . . .  7
+     5.1.  Provisioning . . . . . . . . . . . . . . . . . . . . . . .  7
+     5.2.  Inter-Domain Routing . . . . . . . . . . . . . . . . . . .  7
+   6.  Guidance for Sinking Unwanted Traffic  . . . . . . . . . . . .  8
+   7.  IAB Considerations . . . . . . . . . . . . . . . . . . . . . .  9
+   8.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 10
+     8.1.  Address Assignment . . . . . . . . . . . . . . . . . . . . 10
+     8.2.  DNS Provisioning . . . . . . . . . . . . . . . . . . . . . 11
+   9.  Security Considerations  . . . . . . . . . . . . . . . . . . . 13
+   10. Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . 14
+   11. References . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+     11.1. Normative References . . . . . . . . . . . . . . . . . . . 15
+     11.2. Informative References . . . . . . . . . . . . . . . . . . 15
+   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . . 16
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 2]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
 
 1.  Introduction
 
-   A common method for dealing with unwanted traffic is to direct that
-   traffic at nominated addresses within a network that are null-routed;
-   that is, packets with such destination addresses are discarded
-   silently by routers with a null route for that destination
-   configured.  These addresses are colloquially known as sinkholes, by
-   analogy with the same term used in Physical Geography to describe a
-   hole in the ground formed by some form of collapse of the surface
-   layer, into which objects may fall and be lost forever.
+   This document describes a set of addresses that are provided for use
+   in redirecting unwanted traffic.  The use of designated address
+   ranges for unwanted traffic helps maximize Internet robustness and
+   limits confusion arising from uncoordinated efforts.
 
-   It is common practice for network operators to configure such
-   sinkholes on many or all of their routers in order to avoid the cost
-   of transporting packets across a backbone only for them to be
-   discarded.  This configuration is, in effect, a network-scope,
-   anycast sinkhole service.  The addresses used for such sinkhole
+   Network operators have developed a variety of techniques to mitigate
+   unwanted traffic, but one common approach is to redirect traffic to a
+   a destination using the routing system.  When traffic to a particular
+   destination or set of destinations is unwanted, the routing system
+   can be used to divert the traffic to black hole or, alternatively, a
+   quarantine network.  A black hole effectively discards traffic
+   immediately by forwarding traffic to unwanted destinations to a null
+   route, such as is described in [RFC3882].  While a black hole will
+   accept traffic to the redirected destinations, a black hole will
+   never respond to redirected traffic.  In other words, traffic may
+   enter a black hole, but traffic may never originate from the black
+   hole.  A quarantine network may respond to the unwanted traffic that
+   has been redirected and it may even originate traffic, but a
+   quarantine network is designed to contain and limit the effects of
+   any traffic towards the redirected destinations.  The Conficker
+   Working Group (CWG) mitigated a network threat using this approach.
+   TODO: CWG reference.
 
 
 
-Abley                     Expires May 30, 2015                  [Page 2]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 3]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 
-   services are typically assigned from address pools administered by
-   the network operator, and are for internal use.
+2.  Requirements Language
 
-   This document describes an Internet-scope anycast sinkhole service
-   with associated well-known, permanent IPv4 and IPv6 address
-   assignments, and provides guidance both for network operators and for
-   those wishing to use the service to discard unwanted traffic
-   efficiently.
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in RFC 2119 [RFC2119].
 
-2.  Existing Facilities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 4]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+3.  Existing Facilities
 
    Network-scope sinkholes are in widespread use as destinations for
    remote-triggered black holes [RFC3882], [RFC5635].  The addresses of
@@ -137,24 +239,111 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
    be generally "reachable" and are frequently the subject of martian
    filtering [RFC2827].
 
-3.  Example Use Cases
 
-3.1.  Sinkholing Unwanted DNS Traffic
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 5]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+4.  Example Use Cases
+
+4.1.  Sinkholing Unwanted DNS Traffic
 
    XX example of using a sinkhole-numbered nameserver in a DNS
    delegation XX
 
-3.2.  More Compelling Use Cases
+4.2.  More Compelling Use Cases
 
    XX insert more compelling use cases XX
 
-4.  Guidance for Network Operators
 
-4.1.  Provisioning
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 6]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+5.  Guidance for Network Operators
+
+5.1.  Provisioning
 
    XX examples of how to configure this XX
 
-4.2.  Inter-Domain Routing
+5.2.  Inter-Domain Routing
 
    XX implications of announcing or accepting routes covering sinkhole
    addresses.
@@ -165,23 +354,160 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
 
 
 
-Abley                     Expires May 30, 2015                  [Page 3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 7]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 
-5.  Guidance for Sinking Unwanted Traffic
+6.  Guidance for Sinking Unwanted Traffic
 
    XX provide guidance!  XX
 
-6.  IAB Considerations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 8]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+7.  IAB Considerations
 
    The IAB is requested to approve the delegation of the SINKHOLE.ARPA
-   zone described in Section 7 in accordance with [RFC3172].
+   zone described in Section 8 in accordance with [RFC3172].
 
-7.  IANA Considerations
 
-7.1.  Address Assignment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 9]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+8.  IANA Considerations
+
+8.1.  Address Assignment
 
    This document requests that IANA assign IPv4 and IPv6 number
    resources in conformance with section 4 of [RFC2860].
@@ -221,9 +547,18 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
 
 
 
-Abley                     Expires May 30, 2015                  [Page 4]
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 10]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 
              +----------------------+-----------------------+
@@ -250,10 +585,10 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
              | Reserved-by-Protocol | False                 |
              +----------------------+-----------------------+
 
-7.2.  DNS Provisioning
+8.2.  DNS Provisioning
 
    The IANA is further requested to arrange reverse DNS for all
-   individual addresses assigned in Section 7.1.  All addresses should
+   individual addresses assigned in Section 8.1.  All addresses should
    map to the name SINKHOLE.ARPA.  The name SINKHOLE.ARPA should map to
    the lowest addresses assigned for each address family.
 
@@ -277,9 +612,9 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
 
 
 
-Abley                     Expires May 30, 2015                  [Page 5]
+Abley & Kristoff         Expires August 8, 2015                [Page 11]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 
      $TTL 604800
@@ -302,6 +637,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
 
                                  Figure 1
 
+
      @       IN  SOA   A.IANA-SERVERS.NET. NSTLD.IANA.ORG. (
                          1        ; serial
                          1800     ; refresh
@@ -318,12 +654,82 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
 
                                  Figure 2
 
-8.  Security Considerations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 12]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+9.  Security Considerations
 
    This document presents no known additional security concerns to the
    Internet.
 
-9.  Acknowledgements
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 13]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+10.  Acknowledgements
 
    The author acknowledges the contributions of Stephane Bortzmeyer and
    Warren Kumari.
@@ -333,14 +739,58 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
 
 
 
-Abley                     Expires May 30, 2015                  [Page 6]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 14]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 
-10.  References
+11.  References
 
-10.1.  Normative References
+11.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119, March 1997.
 
    [RFC3882]  Turk, D., "Configuring BGP to Block Denial-of-Service
               Attacks", RFC 3882, September 2004.
@@ -352,7 +802,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
    [RFC6666]  Hilliard, N. and D. Freedman, "A Discard Prefix for IPv6",
               RFC 6666, August 2012.
 
-10.2.  Informative References
+11.2.  Informative References
 
    [RFC2827]  Ferguson, P. and D. Senie, "Network Ingress Filtering:
               Defeating Denial of Service Attacks which employ IP Source
@@ -367,10 +817,31 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    November 2014
               Domain ("arpa")", BCP 52, RFC 3172, September 2001.
 
    [RFC6890]  Cotton, M., Vegoda, L., Bonica, R., and B. Haberman,
-              "Special-Purpose IP Address Registries", BCP 153, RFC
-              6890, April 2013.
+              "Special-Purpose IP Address Registries", BCP 153,
+              RFC 6890, April 2013.
 
-Author's Address
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 15]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+Authors' Addresses
 
    Joe Abley
    Dyn, Inc.
@@ -382,6 +853,14 @@ Author's Address
    Email: jabley@dyn.com
 
 
+   John Kristoff
+   Team Cymru
+   901 International Parkway, Suite 350
+   Lake Mary, FL  32746
+   US
+
+   Phone: +1 847 378 3353
+   Email: jtk@cymru.com
 
 
 
@@ -389,4 +868,29 @@ Author's Address
 
 
 
-Abley                     Expires May 30, 2015                  [Page 7]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 16]
+
