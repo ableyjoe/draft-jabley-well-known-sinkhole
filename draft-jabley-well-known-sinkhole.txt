@@ -1,0 +1,175 @@
+
+
+
+Network Working Group                                           J. Abley
+Internet-Draft                                                 Dyn, Inc.
+Intended status: BCP                                         J. Kristoff
+Expires: August 8, 2015                                       Team Cymru
+                                                        February 4, 2015
+
+
+                 A Well-Known Sinkhole for the Internet
+                  draft-jabley-well-known-sinkhole-00
+
+Abstract
+
+   A common method for dealing with unwanted traffic is to direct that
+   traffic at nominated addresses within a network that are null-routed;
+   that is, packets with such destination addresses are discarded
+   silently by routers with a null route for that destination
+   configured.  These addresses are colloquially known as black holes,
+   by analogy with the same term used in astrophysics to describe a void
+   in spacetime where gravity prohibits anything from escaping once
+   having crossed the event horizon.  Alternatively, traffic may be
+   redirected to quarantine, to isolate, contain and limit any
+   potentially harmful effects.  Quarantine addresses may permit some
+   bidirectional communications whereas a black hole may receive, but
+   never originate traffic.
+
+   This document describes an Internet-scope anycast black hole and
+   quarantine service with associated well-known, permanent IPv4 and
+   IPv6 address assignments, and provides guidance both for network
+   operators and for those wishing to use the service to discard
+   unwanted traffic efficiently.
+
+Status of this Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at http://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on August 8, 2015.
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 1]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+Copyright Notice
+
+   Copyright (c) 2015 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (http://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . ancho
+   2.  Requirements Language . . . . . . . . . . . . . . . . . . . ancho
+   3.  Existing Facilities . . . . . . . . . . . . . . . . . . . . ancho
+   4.  Example Use Cases . . . . . . . . . . . . . . . . . . . . . ancho
+     4.1.  Sinkholing Unwanted DNS Traffic . . . . . . . . . . . . ancho
+     4.2.  More Compelling Use Cases . . . . . . . . . . . . . . . ancho
+   5.  Guidance for Network Operators  . . . . . . . . . . . . . . ancho
+     5.1.  Provisioning  . . . . . . . . . . . . . . . . . . . . . ancho
+     5.2.  Inter-Domain Routing  . . . . . . . . . . . . . . . . . ancho
+   6.  Guidance for Sinking Unwanted Traffic . . . . . . . . . . . ancho
+   7.  IAB Considerations  . . . . . . . . . . . . . . . . . . . . ancho
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . .  iana
+     8.1.  Address Assignment  . . . . . . . . . . . . . . . . . . assig
+     8.2.  DNS Provisioning  . . . . . . . . . . . . . . . . . . . ancho
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . ancho
+   10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . ancho
+   11. References  . . . . . . . . . . . . . . . . . . . . . . . . ancho
+     11.1. Normative References  . . . . . . . . . . . . . . . . . ancho
+     11.2. Informative References  . . . . . . . . . . . . . . . . ancho
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . .     0
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 2]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+1.  Introduction
+
+   This document describes a set of addresses that are provided for use
+   in redirecting unwanted traffic.  The use of designated address
+   ranges for unwanted traffic helps maximize Internet robustness and
+   limits confusion arising from uncoordinated efforts.
+
+   Network operators have developed a variety of techniques to mitigate
+   unwanted traffic, but one common approach is to redirect traffic to a
+   a destination using the routing system.  When traffic to a particular
+   destination or set of destinations is unwanted, the routing system
+   can be used to divert the traffic to black hole or, alternatively, a
+   quarantine network.  A black hole effectively discards traffic
+   immediately by forwarding traffic to unwanted destinations to a null
+   route, such as is described in [RFC3882].  While a black hole will
+   accept traffic to the redirected destinations, a black hole will
+   never respond to redirected traffic.  In other words, traffic may
+   enter a black hole, but traffic may never originate from the black
+   hole.  A quarantine network may respond to the unwanted traffic that
+   has been redirected and it may even originate traffic, but a
+   quarantine network is designed to contain and limit the effects of
+   any traffic towards the redirected destinations.  The Conficker
+   Working Group (CWG) mitigated a network threat using this approach.
+   TODO: CWG reference.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 3]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+2.  Requirements Language
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this

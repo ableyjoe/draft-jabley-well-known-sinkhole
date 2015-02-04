@@ -121,7 +121,6 @@
 	"SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY",
 	and "OPTIONAL" in this document are to be interpreted as
 	described in <xref target="RFC2119">RFC 2119</xref>.</t>
-      </section>
     </section>
 
     <section title="Existing Facilities">
