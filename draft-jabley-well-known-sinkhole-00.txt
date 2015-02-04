@@ -451,7 +451,7 @@ Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 7.  IAB Considerations
 
-   The IAB is requested to approve the delegation of the SINKHOLE.ARPA
+   The IAB is requested to approve the delegation of the BLACKHOLE.ARPA
    zone described in Section 8 in accordance with [RFC3172].
 
 
@@ -589,15 +589,15 @@ Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
    The IANA is further requested to arrange reverse DNS for all
    individual addresses assigned in Section 8.1.  All addresses should
-   map to the name SINKHOLE.ARPA.  The name SINKHOLE.ARPA should map to
-   the lowest addresses assigned for each address family.
+   map to the name BLACKHOLE.ARPA.  The name BLACKHOLE.ARPA should map
+   to the lowest addresses assigned for each address family.
 
    The following approach is suggested.  The IANA is free to choose
    other approaches.
 
-   1.  The zone SINKHOLE.ARPA should be provisioned on suitable
+   1.  The zone BLACKHOLE.ARPA should be provisioned on suitable
        nameservers as described in Figure 1.  A delegation for
-       SINKHOLE.ARPA to those nameservers from the ARPA zone should be
+       BLACKHOLE.ARPA to those nameservers from the ARPA zone should be
        provisioned.
 
    2.  The reverse zone or zones for the assigned IPv4 and IPv6
@@ -650,7 +650,7 @@ Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
                  NS    C.IANA-SERVERS.NET.
                  NS    NS.ICANN.ORG.
 
-     *           PTR   SINKHOLE.ARPA.
+     *           PTR   BLACKHOLE.ARPA.
 
                                  Figure 2
 
@@ -731,7 +731,7 @@ Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 10.  Acknowledgements
 
-   The author acknowledges the contributions of Stephane Bortzmeyer and
+   The authors acknowledges the contributions of Stephane Bortzmeyer and
    Warren Kumari.
 
 
