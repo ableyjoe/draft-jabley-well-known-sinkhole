@@ -45,7 +45,23 @@
       </address>
     </author>
 
-    <date day="26" month="November" year="2014" />
+    <author fullname="John Kristoff" initials="J.K." surname="Kristoff">
+      <organization>Team Cymru</organization>
+      <address>
+        <postal>
+          <street>901 International Parkway, Suite 350</street>
+          <city>Lake Mary</city>
+          <region>FL</region>
+          <code>32746</code>
+          <country>US</country>
+        </postal>
+        <phone>+1 847 378 3353</phone>
+        <email>jtk@cymru.com</email>
+      </address>
+    </author>
+
+
+    <date day="4" month="February" year="2015" />
 
     <abstract>
       <t>A common method for dealing with unwanted traffic is to
@@ -53,45 +69,59 @@
 	that are null-routed; that is, packets with such destination
 	addresses are discarded silently by routers with a null
 	route for that destination configured. These addresses are
-	colloquially known as sinkholes, by analogy with the same
-	term used in Physical Geography to describe a hole in the
-	ground formed by some form of collapse of the surface
-	layer, into which objects may fall and be lost forever.</t>
+	colloquially known as black holes, by analogy with the same
+	term used in astrophysics to describe a void in spacetime
+	where gravity prohibits anything from escaping once having
+	crossed the event horizon. Alternatively, traffic may be
+	redirected to quarantine, to isolate, contain and limit any
+	potentially harmful effects. Quarantine addresses may permit
+	some bidirectional communications whereas a black hole may
+	receive, but never originate traffic.</t>
 
-      <t>This document describes an Internet-scope anycast sinkhole
-	service with associated well-known, permanent IPv4 and IPv6
-	address assignments, and provides guidance both for network
-	operators and for those wishing to use the service to discard
-	unwanted traffic efficiently.</t>
+      <t>This document describes an Internet-scope anycast black hole
+	and quarantine service with associated well-known, permanent
+	IPv4 and IPv6 address assignments, and provides guidance
+	both for network operators and for those wishing to use the
+	service to discard unwanted traffic efficiently.</t>
     </abstract>
   </front>
 
   <middle>
     <section title="Introduction">
-      <t>A common method for dealing with unwanted traffic is to
-        direct that traffic at nominated addresses within a network
-        that are null-routed; that is, packets with such destination
-        addresses are discarded silently by routers with a null
-        route for that destination configured. These addresses are
-        colloquially known as sinkholes, by analogy with the same
-        term used in Physical Geography to describe a hole in the
-        ground formed by some form of collapse of the surface
-        layer, into which objects may fall and be lost forever.</t>
+      <t>This document describes a set of addresses that are provided
+	for use in redirecting unwanted traffic.  The use of
+	designated address ranges for unwanted traffic helps maximize
+	Internet robustness and limits confusion arising from
+	uncoordinated efforts.</t>
 
-      <t>It is common practice for network operators to configure 
-        such sinkholes on many or all of their routers in order to
-        avoid the cost of transporting packets across a backbone
-        only for them to be discarded. This configuration is, in
-        effect, a network-scope, anycast sinkhole service. The
-        addresses used for such sinkhole services are typically
-        assigned from address pools administered by the network
-        operator, and are for internal use.</t>
+      <t>Network operators have developed a variety of techniques
+	to mitigate unwanted traffic, but one common approach is
+	to redirect traffic to a a destination using the routing
+	system.  When traffic to a particular destination or set
+	of destinations is unwanted, the routing system can be used
+	to divert the traffic to black hole or, alternatively, a
+	quarantine network.  A black hole effectively discards
+	traffic immediately by forwarding traffic to unwanted
+	destinations to a null route, such as is described in <xref
+	target="RFC3882"/>.  While a black hole will accept traffic
+	to the redirected destinations, a black hole will never
+	respond to redirected traffic.  In other words, traffic may
+	enter a black hole, but traffic may never originate from
+	the black hole.  A quarantine network may respond to the
+	unwanted traffic that has been redirected and it may even
+	originate traffic, but a quarantine network is designed to
+	contain and limit the effects of any traffic towards the
+	redirected destinations.  The Conficker Working Group (CWG)
+	mitigated a network threat using this approach.  TODO: CWG
+	reference.</t>
+    </section>
 
-      <t>This document describes an Internet-scope anycast sinkhole
-        service with associated well-known, permanent IPv4 and IPv6
-        address assignments, and provides guidance both for network
-        operators and for those wishing to use the service to discard
-        unwanted traffic efficiently.</t>
+    <section title="Requirements Language">
+      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
+	"SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY",
+	and "OPTIONAL" in this document are to be interpreted as
+	described in <xref target="RFC2119">RFC 2119</xref>.</t>
+      </section>
     </section>
 
     <section title="Existing Facilities">
