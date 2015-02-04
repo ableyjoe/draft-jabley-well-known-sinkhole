@@ -75,26 +75,26 @@ Copyright Notice
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . ancho
-   2.  Requirements Language . . . . . . . . . . . . . . . . . . . ancho
-   3.  Existing Facilities . . . . . . . . . . . . . . . . . . . . ancho
-   4.  Example Use Cases . . . . . . . . . . . . . . . . . . . . . ancho
-     4.1.  Sinkholing Unwanted DNS Traffic . . . . . . . . . . . . ancho
-     4.2.  More Compelling Use Cases . . . . . . . . . . . . . . . ancho
-   5.  Guidance for Network Operators  . . . . . . . . . . . . . . ancho
-     5.1.  Provisioning  . . . . . . . . . . . . . . . . . . . . . ancho
-     5.2.  Inter-Domain Routing  . . . . . . . . . . . . . . . . . ancho
-   6.  Guidance for Sinking Unwanted Traffic . . . . . . . . . . . ancho
-   7.  IAB Considerations  . . . . . . . . . . . . . . . . . . . . ancho
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . .  iana
-     8.1.  Address Assignment  . . . . . . . . . . . . . . . . . . assig
-     8.2.  DNS Provisioning  . . . . . . . . . . . . . . . . . . . ancho
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . ancho
-   10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . ancho
-   11. References  . . . . . . . . . . . . . . . . . . . . . . . . ancho
-     11.1. Normative References  . . . . . . . . . . . . . . . . . ancho
-     11.2. Informative References  . . . . . . . . . . . . . . . . ancho
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . .     0
+   1.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . .  3
+   2.  Requirements Language  . . . . . . . . . . . . . . . . . . . .  4
+   3.  Existing Facilities  . . . . . . . . . . . . . . . . . . . . .  5
+   4.  Example Use Cases  . . . . . . . . . . . . . . . . . . . . . .  6
+     4.1.  Sinkholing Unwanted DNS Traffic  . . . . . . . . . . . . .  6
+     4.2.  More Compelling Use Cases  . . . . . . . . . . . . . . . .  6
+   5.  Guidance for Network Operators . . . . . . . . . . . . . . . .  7
+     5.1.  Provisioning . . . . . . . . . . . . . . . . . . . . . . .  7
+     5.2.  Inter-Domain Routing . . . . . . . . . . . . . . . . . . .  7
+   6.  Guidance for Sinking Unwanted Traffic  . . . . . . . . . . . .  8
+   7.  IAB Considerations . . . . . . . . . . . . . . . . . . . . . .  9
+   8.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 10
+     8.1.  Address Assignment . . . . . . . . . . . . . . . . . . . . 10
+     8.2.  DNS Provisioning . . . . . . . . . . . . . . . . . . . . . 11
+   9.  Security Considerations  . . . . . . . . . . . . . . . . . . . 13
+   10. Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . 14
+   11. References . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+     11.1. Normative References . . . . . . . . . . . . . . . . . . . 15
+     11.2. Informative References . . . . . . . . . . . . . . . . . . 15
+   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . . 16
 
 
 
@@ -173,3 +173,724 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in RFC 2119 [RFC2119].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 4]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+3.  Existing Facilities
+
+   Network-scope sinkholes are in widespread use as destinations for
+   remote-triggered black holes [RFC3882], [RFC5635].  The addresses of
+   the sinkholes used for these purposes are generally specific to the
+   network operator that deployed them, and their details not widely
+   published.
+
+   [RFC6666] describes IPv6 addresses assigned for the purpose of
+   discarding traffic.  Those addresses are not intended to be used
+   across autonomous-system borders, however; they are not observed to
+   be generally "reachable" and are frequently the subject of martian
+   filtering [RFC2827].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 5]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+4.  Example Use Cases
+
+4.1.  Sinkholing Unwanted DNS Traffic
+
+   XX example of using a sinkhole-numbered nameserver in a DNS
+   delegation XX
+
+4.2.  More Compelling Use Cases
+
+   XX insert more compelling use cases XX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 6]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+5.  Guidance for Network Operators
+
+5.1.  Provisioning
+
+   XX examples of how to configure this XX
+
+5.2.  Inter-Domain Routing
+
+   XX implications of announcing or accepting routes covering sinkhole
+   addresses.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 7]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+6.  Guidance for Sinking Unwanted Traffic
+
+   XX provide guidance!  XX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 8]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+7.  IAB Considerations
+
+   The IAB is requested to approve the delegation of the SINKHOLE.ARPA
+   zone described in Section 8 in accordance with [RFC3172].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                 [Page 9]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+8.  IANA Considerations
+
+8.1.  Address Assignment
+
+   This document requests that IANA assign IPv4 and IPv6 number
+   resources in conformance with section 4 of [RFC2860].
+
+   The IANA is requested to assign one IPv4 /24 netblock and register
+   its use in the IPv4 Special-Purpose Address Registry [RFC6890] as
+   follows:
+
+             +----------------------+-----------------------+
+             | Name                 | Value                 |
+             +----------------------+-----------------------+
+             | Address Block        | As determined by IANA |
+             |                      |                       |
+             | Name                 | Internet-Sinkhole-v4  |
+             |                      |                       |
+             | RFC                  | [THIS DOCUMENT]       |
+             |                      |                       |
+             | Allocation Date      | As determined by IANA |
+             |                      |                       |
+             | Termination Date     | N/A                   |
+             |                      |                       |
+             | Source               | False                 |
+             |                      |                       |
+             | Destination          | True                  |
+             |                      |                       |
+             | Forwardable          | True                  |
+             |                      |                       |
+             | Global               | True                  |
+             |                      |                       |
+             | Reserved-by-Protocol | False                 |
+             +----------------------+-----------------------+
+
+   The IANA is requested to assign one IPv6 /48 netblock and register
+   its use in the IPv6 Special-Purpose Address Registry [RFC6890] as
+   follows:
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 10]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+             +----------------------+-----------------------+
+             | Name                 | Value                 |
+             +----------------------+-----------------------+
+             | Address Block        | As determined by IANA |
+             |                      |                       |
+             | Name                 | Internet-Sinkhole-v6  |
+             |                      |                       |
+             | RFC                  | [THIS DOCUMENT]       |
+             |                      |                       |
+             | Allocation Date      | As determined by IANA |
+             |                      |                       |
+             | Termination Date     | N/A                   |
+             |                      |                       |
+             | Source               | False                 |
+             |                      |                       |
+             | Destination          | True                  |
+             |                      |                       |
+             | Forwardable          | True                  |
+             |                      |                       |
+             | Global               | True                  |
+             |                      |                       |
+             | Reserved-by-Protocol | False                 |
+             +----------------------+-----------------------+
+
+8.2.  DNS Provisioning
+
+   The IANA is further requested to arrange reverse DNS for all
+   individual addresses assigned in Section 8.1.  All addresses should
+   map to the name SINKHOLE.ARPA.  The name SINKHOLE.ARPA should map to
+   the lowest addresses assigned for each address family.
+
+   The following approach is suggested.  The IANA is free to choose
+   other approaches.
+
+   1.  The zone SINKHOLE.ARPA should be provisioned on suitable
+       nameservers as described in Figure 1.  A delegation for
+       SINKHOLE.ARPA to those nameservers from the ARPA zone should be
+       provisioned.
+
+   2.  The reverse zone or zones for the assigned IPv4 and IPv6
+       addresses should be provisioned on suitable nameservers as
+       described in Figure 2.  Suitable delegations for those zones
+       should be provisioned from their parents.
+
+   3.  All zones should be signed with DNSSEC parameters of the IANA's
+       choosing, and all delegations should be secure.
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 11]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+     $TTL 604800
+
+     @       IN  SOA   A.IANA-SERVERS.NET. NSTLD.IANA.ORG. (
+                         1        ; serial
+                         1800     ; refresh
+                         900      ; retry
+                         604800   ; expire
+                         604800 ) ; negative cache TTL
+
+                 NS    A.IANA-SERVERS.NET.
+                 NS    B.IANA-SERVERS.NET.
+                 NS    C.IANA-SERVERS.NET.
+                 NS    NS.ICANN.ORG.
+
+                 A     <lowest v4 address assigned>
+
+                 AAAA  <lowest v6 address assigned>
+
+                                 Figure 1
+
+
+     @       IN  SOA   A.IANA-SERVERS.NET. NSTLD.IANA.ORG. (
+                         1        ; serial
+                         1800     ; refresh
+                         900      ; retry
+                         604800   ; expire
+                         604800 ) ; negative cache TTL
+
+                 NS    A.IANA-SERVERS.NET.
+                 NS    B.IANA-SERVERS.NET.
+                 NS    C.IANA-SERVERS.NET.
+                 NS    NS.ICANN.ORG.
+
+     *           PTR   SINKHOLE.ARPA.
+
+                                 Figure 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 12]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+9.  Security Considerations
+
+   This document presents no known additional security concerns to the
+   Internet.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 13]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+10.  Acknowledgements
+
+   The author acknowledges the contributions of Stephane Bortzmeyer and
+   Warren Kumari.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 14]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+11.  References
+
+11.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119, March 1997.
+
+   [RFC3882]  Turk, D., "Configuring BGP to Block Denial-of-Service
+              Attacks", RFC 3882, September 2004.
+
+   [RFC5635]  Kumari, W. and D. McPherson, "Remote Triggered Black Hole
+              Filtering with Unicast Reverse Path Forwarding (uRPF)",
+              RFC 5635, August 2009.
+
+   [RFC6666]  Hilliard, N. and D. Freedman, "A Discard Prefix for IPv6",
+              RFC 6666, August 2012.
+
+11.2.  Informative References
+
+   [RFC2827]  Ferguson, P. and D. Senie, "Network Ingress Filtering:
+              Defeating Denial of Service Attacks which employ IP Source
+              Address Spoofing", BCP 38, RFC 2827, May 2000.
+
+   [RFC2860]  Carpenter, B., Baker, F., and M. Roberts, "Memorandum of
+              Understanding Concerning the Technical Work of the
+              Internet Assigned Numbers Authority", RFC 2860, June 2000.
+
+   [RFC3172]  Huston, G., "Management Guidelines & Operational
+              Requirements for the Address and Routing Parameter Area
+              Domain ("arpa")", BCP 52, RFC 3172, September 2001.
+
+   [RFC6890]  Cotton, M., Vegoda, L., Bonica, R., and B. Haberman,
+              "Special-Purpose IP Address Registries", BCP 153,
+              RFC 6890, April 2013.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 15]
+
+Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+
+
+Authors' Addresses
+
+   Joe Abley
+   Dyn, Inc.
+   186 Albert Street, Suite 103
+   London, ON  N6A 1M1
+   Canada
+
+   Phone: +1 519 670 9327
+   Email: jabley@dyn.com
+
+
+   John Kristoff
+   Team Cymru
+   901 International Parkway, Suite 350
+   Lake Mary, FL  32746
+   US
+
+   Phone: +1 847 378 3353
+   Email: jtk@cymru.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Abley & Kristoff         Expires August 8, 2015                [Page 16]
+
