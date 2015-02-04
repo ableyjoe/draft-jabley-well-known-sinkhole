@@ -8,8 +8,8 @@ Expires: August 8, 2015                                       Team Cymru
                                                         February 4, 2015
 
 
-                 A Well-Known Sinkhole for the Internet
-                  draft-jabley-well-known-sinkhole-00
+                A Well-Known Black Hole for the Internet
+                  draft-jabley-well-known-blackhole-00
 
 Abstract
 
@@ -54,7 +54,7 @@ Status of this Memo
 
 Abley & Kristoff         Expires August 8, 2015                 [Page 1]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 Copyright Notice
@@ -110,7 +110,7 @@ Table of Contents
 
 Abley & Kristoff         Expires August 8, 2015                 [Page 2]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 1.  Introduction
@@ -166,7 +166,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                 [Page 3]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 2.  Requirements Language
@@ -222,7 +222,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                 [Page 4]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 3.  Existing Facilities
@@ -278,7 +278,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                 [Page 5]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 4.  Example Use Cases
@@ -334,7 +334,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                 [Page 6]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 5.  Guidance for Network Operators
@@ -390,7 +390,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                 [Page 7]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 6.  Guidance for Sinking Unwanted Traffic
@@ -446,7 +446,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                 [Page 8]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 7.  IAB Considerations
@@ -502,7 +502,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                 [Page 9]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 8.  IANA Considerations
@@ -558,7 +558,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                [Page 10]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
              +----------------------+-----------------------+
@@ -614,7 +614,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                [Page 11]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
      $TTL 604800
@@ -670,7 +670,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                [Page 12]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 9.  Security Considerations
@@ -726,7 +726,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                [Page 13]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 10.  Acknowledgements
@@ -782,7 +782,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                [Page 14]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 11.  References
@@ -838,7 +838,7 @@ Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
 
 Abley & Kristoff         Expires August 8, 2015                [Page 15]
 
-Internet-Draft   A Well-Known Sinkhole for the Internet    February 2015
+Internet-Draft  A Well-Known Black Hole for the Internet   February 2015
 
 
 Authors' Addresses
